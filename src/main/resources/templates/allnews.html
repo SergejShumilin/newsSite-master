@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:each="news : ${allNews}">
+    <tr>
+        <td th:text="${news.id}" th:align="centre">...</td>
+        <br>
+        <td th:text="${news.title}" th:align="centre">...</td>
+        <br>
+        <td th:text="${news.shortText}" th:align="centre">...</td>
+        <a href="/news/{id}">Читать далее</a>
+        <br>
+    </tr>
+
+</th:block>
+<br>
+<a href="/publish" th:align="centre">Предложить новость</a>
+</div>
+</body>
+</html>
