@@ -52,7 +52,8 @@ public class NewsRepositoryImpl implements NewsRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 News news =new News();
-                news.setTitle(resultSet.getString("title"));
+                news.setId(resultSet.getLong("id"));
+                news.setTitle(resultSet.getString( "title"));
                 news.setContent(resultSet.getString("content"));
                 oneNews.add(news);
 

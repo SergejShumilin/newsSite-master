@@ -7,11 +7,12 @@
 <body>
 <th:block th:each="onenews : ${news}">
     <tr>
+        <td th:text="${onenews.id}">...</td>
         <br>
-<td th:text="${onenews.title}">...</td>
-<br>
-<td th:text="${onenews.content}">...</td>
-<br>
+        <td th:text="${onenews.title}">...</td>
+        <br>
+        <td th:text="${onenews.content}">...</td>
+        <br>
     </tr>
 
 </th:block>
