@@ -13,7 +13,8 @@
         <br>
         <td th:text="${news.shortText}" th:align="centre">...</td>
 
-        <a th:href="@{/news/{news.id}}">Read more</a>
+        <a th:href="@{|/news/${news.id}|}">Read more</a>
+
         <br>
     </tr>
 
