@@ -12,13 +12,13 @@
         <td th:text="${news.title}" th:align="centre">...</td>
         <br>
         <td th:text="${news.shortText}" th:align="centre">...</td>
-        <a href="/news/${news.id}">Читать далее</a>
+
+        <a th:href="@{/news/{news.id}}">Read more</a>
         <br>
     </tr>
 
 </th:block>
 <br>
 <a href="/publish" th:align="centre">Предложить новость</a>
-</div>
 </body>
 </html>

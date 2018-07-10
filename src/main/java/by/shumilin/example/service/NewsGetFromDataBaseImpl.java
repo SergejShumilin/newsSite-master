@@ -10,6 +10,7 @@ import java.util.List;
 @Component
 public class NewsGetFromDataBaseImpl implements NewsGetFromDataBase {
 
+
     @Autowired
     NewsRepository newsRepository;
 
