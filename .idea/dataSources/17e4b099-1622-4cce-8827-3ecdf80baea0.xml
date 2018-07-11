@@ -1134,29 +1134,34 @@
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="285" parent="279" name="PRIMARY">
+    <column id="285" parent="279" name="Date">
+      <Position>5</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="286" parent="279" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="286" parent="280" name="ID">
+    <column id="287" parent="280" name="ID">
       <Position>1</Position>
       <DataType>bigint(32)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="280" name="Name">
+    <column id="288" parent="280" name="Name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="280" name="Password">
+    <column id="289" parent="280" name="Password">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="289" parent="280" name="PRIMARY">
+    <key id="290" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

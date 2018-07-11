@@ -15,7 +15,7 @@ public class NewsRepositoryImpl implements NewsRepository {
     @Autowired
     DBWorker dbWorker;
 
-    private static final String INSERT = "INSERT INTO news(title, content, shortText) VALUES(?,?,?)";
+    private static final String INSERT = "INSERT INTO news(title, content, shortText, date) VALUES(?,?,?, Now())";
     private static final String SELECT_ALL = "SELECT * from news";
     private static final String QUERY = "SELECT * FROM news WHERE id = ?";
 
@@ -27,7 +27,7 @@ public class NewsRepositoryImpl implements NewsRepository {
             preparedStatement = dbWorker.getConnection().prepareStatement(INSERT);
             preparedStatement.setString(1, title);
             preparedStatement.setString(2, content);
-            preparedStatement.setString(3, content.substring(0, 50));
+            preparedStatement.setString(3, content.substring(0, 10));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
