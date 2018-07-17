@@ -23,9 +23,9 @@ public class AllNews {
         return "allnews";
     }
 
-    @GetMapping(value = "/news/{id}")
-    public String getNews(@PathVariable long id, Model model) {
-        List<News> news = newsGetFromDataBase.getNews(id);
+    @GetMapping(value = "/news/{newsId}")
+    public String getNews(@PathVariable long newsId, Model model) {
+        News news = newsGetFromDataBase.getNews(newsId);
         model.addAttribute("news", news);
         return "news";
     }

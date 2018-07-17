@@ -5,16 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<th:block th:each="onenews : ${news}">
     <tr>
-        <td th:text="${onenews.id}">...</td>
+        <td th:text="${news.id}">...</td>
         <br>
-        <td th:text="${onenews.title}">...</td>
+        <td th:text="${news.title}">...</td>
         <br>
-        <td th:text="${onenews.content}">...</td>
+        <td th:text="${news.content}">...</td>
         <br>
     </tr>
-
-</th:block>
+<h1>Leave a comment</h1>
+<form action="#" th:action="@{/comment}" method="post">
+    <p>Comment: <input type="text" name="commentContent" required minlength="2" maxlength="500"></p>
+    <input id="id" name="newsId" type="hidden" th:value="${news.id}"/>
+    <p><input type="submit" value="comment on" /> </p>
+</form>
 </body>
 </html>

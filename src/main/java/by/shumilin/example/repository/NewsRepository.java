@@ -7,7 +7,7 @@ import java.util.List;
 public interface NewsRepository {
     void save(String title, String content);
 
-    List<News> getNews(long id);
+    News getNews(long newsId);
 
     List<News> getAllNews();
 

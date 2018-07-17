@@ -1110,58 +1110,96 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="279" parent="3" name="news"/>
-    <table id="280" parent="3" name="user"/>
-    <column id="281" parent="279" name="ID">
+    <table id="279" parent="3" name="comment"/>
+    <table id="280" parent="3" name="news"/>
+    <table id="281" parent="3" name="user"/>
+    <column id="282" parent="279" name="comment_id">
       <Position>1</Position>
       <DataType>bigint(32)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="279" name="Title">
+    <column id="283" parent="279" name="content">
+      <Position>2</Position>
+      <DataType>varchar(500)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="284" parent="279" name="data">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="285" parent="279" name="news_id">
+      <Position>4</Position>
+      <DataType>bigint(32)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="286" parent="279" name="news_id">
+      <ColNames>news_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="287" parent="279" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>comment_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="288" parent="279" name="comment_ibfk_1">
+      <ColNames>news_id</ColNames>
+      <RefSchemaName>mydatabase</RefSchemaName>
+      <RefTableName>news</RefTableName>
+      <RefColNames>news_id</RefColNames>
+    </foreign-key>
+    <column id="289" parent="280" name="news_id">
+      <Position>1</Position>
+      <DataType>bigint(32)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="280" name="Title">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="279" name="Content">
+    <column id="291" parent="280" name="Content">
       <Position>3</Position>
       <DataType>varchar(500)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="279" name="ShortText">
+    <column id="292" parent="280" name="ShortText">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="279" name="Date">
+    <column id="293" parent="280" name="Date">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="286" parent="279" name="PRIMARY">
+    <key id="294" parent="280" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>news_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="287" parent="280" name="ID">
+    <column id="295" parent="281" name="ID">
       <Position>1</Position>
       <DataType>bigint(32)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="280" name="Name">
+    <column id="296" parent="281" name="Name">
       <Position>2</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="280" name="Password">
+    <column id="297" parent="281" name="Password">
       <Position>3</Position>
       <DataType>varchar(32)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="290" parent="280" name="PRIMARY">
+    <key id="298" parent="281" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>

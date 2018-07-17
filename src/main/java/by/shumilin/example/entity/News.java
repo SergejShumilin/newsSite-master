@@ -1,19 +1,24 @@
 package by.shumilin.example.entity;
 
+import java.util.List;
+import java.util.Objects;
+
 public class News {
     private long id;
     private String title;
     private String content;
     private String shortText;
+    private List<Comment> comments;
 
     public News() {
     }
 
-    public News(long id, String title, String content, String shortText) {
-        this.id = id;
+    public News(long newsId, String title, String content, String shortText, List<Comment> comments) {
+        this.id = newsId;
         this.title = title;
         this.content = content;
         this.shortText = shortText;
+        this.comments = comments;
     }
 
     public long getId() {
@@ -48,6 +53,31 @@ public class News {
         this.shortText = shortText;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        News news = (News) o;
+        return id == news.id &&
+                Objects.equals(title, news.title) &&
+                Objects.equals(content, news.content) &&
+                Objects.equals(shortText, news.shortText) &&
+                Objects.equals(comments, news.comments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, content, shortText, comments);
+    }
+
     @Override
     public String toString() {
         return "News{" +
@@ -55,6 +85,7 @@ public class News {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", shortText='" + shortText + '\'' +
+                ", comments=" + comments +
                 '}';
     }
 }

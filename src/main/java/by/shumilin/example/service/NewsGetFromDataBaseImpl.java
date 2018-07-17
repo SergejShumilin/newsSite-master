@@ -16,9 +16,9 @@ private static final Logger LOG = Logger.getLogger(NewsGetFromDataBaseImpl.class
     NewsRepository newsRepository;
 
     @Override
-    public List<News> getNews(long id) {
-        List<News> news = newsRepository.getNews(id);
-        LOG.info("метод вызвался с id=" + id);
+    public News getNews(long newsId) {
+        News news = newsRepository.getNews(newsId);
+        LOG.info("метод вызвался с id=" + newsId);
         return news;
     }
 

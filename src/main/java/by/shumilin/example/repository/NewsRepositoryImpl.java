@@ -17,7 +17,8 @@ public class NewsRepositoryImpl implements NewsRepository {
 
     private static final String INSERT = "INSERT INTO news(title, content, shortText, date) VALUES(?,?,?, Now())";
     private static final String SELECT_ALL = "SELECT * from news";
-    private static final String QUERY = "SELECT * FROM news WHERE id = ?";
+    private static final String QUERY = "SELECT * FROM news WHERE news_id = ?";
+
 
 
     @Override
@@ -42,21 +43,18 @@ public class NewsRepositoryImpl implements NewsRepository {
     }
 
     @Override
-    public List<News> getNews(long id) {
+    public News getNews(long newsId) {
 
         PreparedStatement preparedStatement = null;
-        List<News> oneNews = new ArrayList<>();
+        News news = new News();
         try {
             preparedStatement = dbWorker.getConnection().prepareStatement(QUERY);
-            preparedStatement.setLong(1, id);
+            preparedStatement.setLong(1, newsId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                News news =new News();
-                news.setId(resultSet.getLong("id"));
-                news.setTitle(resultSet.getString( "title"));
+                news.setId(resultSet.getLong("news_id"));
+                news.setTitle(resultSet.getString("title"));
                 news.setContent(resultSet.getString("content"));
-                oneNews.add(news);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -68,7 +66,7 @@ public class NewsRepositoryImpl implements NewsRepository {
                 e.printStackTrace();
             }
         }
-        return oneNews;
+        return news;
     }
 
     @Override

@@ -5,7 +5,7 @@ import by.shumilin.example.entity.News;
 import java.util.List;
 
 public interface NewsGetFromDataBase {
-    List<News> getNews(long id);
+    News getNews(long newsId);
 
     List<News> getAllNews();
 }
