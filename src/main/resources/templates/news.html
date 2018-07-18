@@ -13,11 +13,20 @@
         <td th:text="${news.content}">...</td>
         <br>
     </tr>
-<h1>Leave a comment</h1>
+<h6>Leave a comment</h6>
 <form action="#" th:action="@{/comment}" method="post">
     <p>Comment: <input type="text" name="commentContent" required minlength="2" maxlength="500"></p>
     <input id="id" name="newsId" type="hidden" th:value="${news.id}"/>
     <p><input type="submit" value="comment on" /> </p>
 </form>
+
+    <th:block th:each="comment : ${comments}">
+        <tr>
+            <td th:text="${comment.commentId}" >...</td>
+            <br>
+            <td th:text="${comment.content}" >...</td>
+            <br>
+        </tr>
+    </th:block>
 </body>
 </html>

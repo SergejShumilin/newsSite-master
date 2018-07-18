@@ -1120,7 +1120,7 @@
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="279" name="content">
+    <column id="283" parent="279" name="comments">
       <Position>2</Position>
       <DataType>varchar(500)|0s</DataType>
       <ColumnKind>normal</ColumnKind>

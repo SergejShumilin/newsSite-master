@@ -7,19 +7,16 @@
 <body>
 <th:block th:each="news : ${allNews}">
     <tr>
-        <td th:text="${news.id}" th:align="centre">...</td>
+        <td th:text="${news.id}" >...</td>
         <br>
-        <td th:text="${news.title}" th:align="centre">...</td>
+        <td th:text="${news.title}" >...</td>
         <br>
-        <td th:text="${news.shortText}" th:align="centre">...</td>
-
+        <td th:text="${news.shortText}">...</td>
         <a th:href="@{|/news/${news.id}|}">Read more</a>
-
         <br>
     </tr>
-
 </th:block>
 <br>
-<a href="/publish" th:align="centre">Предложить новость</a>
+<a href="/publish">Предложить новость</a>
 </body>
 </html>

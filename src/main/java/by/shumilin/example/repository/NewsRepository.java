@@ -1,5 +1,6 @@
 package by.shumilin.example.repository;
 
+import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
 
 import java.util.List;
@@ -10,6 +11,8 @@ public interface NewsRepository {
     News getNews(long newsId);
 
     List<News> getAllNews();
+
+
 
 
 }

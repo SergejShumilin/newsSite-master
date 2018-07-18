@@ -6,12 +6,11 @@ public class Comment {
     private long commentId;
     private String content;
 
-
-    public long getId() {
+    public long getCommentId() {
         return commentId;
     }
 
-    public void setId(long id) {
+    public void setCommentId(long commentId) {
         this.commentId = commentId;
     }
 
@@ -41,7 +40,7 @@ public class Comment {
     @Override
     public String toString() {
         return "Comment{" +
-                "id=" + commentId +
+                "commentId=" + commentId +
                 ", content='" + content + '\'' +
                 '}';
     }

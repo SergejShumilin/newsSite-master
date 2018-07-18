@@ -1,6 +1,7 @@
 package by.shumilin.example.repository;
 
 import by.shumilin.example.connection.DBWorker;
+import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,8 +18,8 @@ public class NewsRepositoryImpl implements NewsRepository {
 
     private static final String INSERT = "INSERT INTO news(title, content, shortText, date) VALUES(?,?,?, Now())";
     private static final String SELECT_ALL = "SELECT * from news";
-    private static final String QUERY = "SELECT * FROM news WHERE news_id = ?";
-
+    private static final String QUERY_TO_DB_NEWS = "SELECT * FROM news WHERE news_id = ?";
+    private static final String JOIN = "SELECT news.Title, news.Content, comment.comments FROM news INNER JOIN comment ON news.news_id=comment.news_id";
 
 
     @Override
@@ -44,11 +45,10 @@ public class NewsRepositoryImpl implements NewsRepository {
 
     @Override
     public News getNews(long newsId) {
-
         PreparedStatement preparedStatement = null;
         News news = new News();
         try {
-            preparedStatement = dbWorker.getConnection().prepareStatement(QUERY);
+            preparedStatement = dbWorker.getConnection().prepareStatement(QUERY_TO_DB_NEWS);
             preparedStatement.setLong(1, newsId);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -96,4 +96,6 @@ public class NewsRepositoryImpl implements NewsRepository {
         }
         return allNews;
     }
+
+
 }
