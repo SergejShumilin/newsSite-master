@@ -8,4 +8,6 @@ public interface CommentRepository {
     void save(String commentContent, Long newsId);
 
     List<Comment> getComment(Long newsId);
+
+    void delete(Long commentId);
 }

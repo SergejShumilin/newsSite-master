@@ -13,6 +13,8 @@
         <td th:text="${news.content}">...</td>
         <br>
     </tr>
+
+
 <h6>Leave a comment</h6>
 <form action="#" th:action="@{/comment}" method="post">
     <p>Comment: <input type="text" name="commentContent" required minlength="2" maxlength="500"></p>
@@ -26,6 +28,10 @@
             <br>
             <td th:text="${comment.content}" >...</td>
             <br>
+            <form action="#" th:action="@{/delete}" method="post">
+                <input id="commentId" name="commentId" type="hidden" th:value="${comment.commentId}"/>
+                <p><input type="submit" value="delete" /> </p>
+            </form>
         </tr>
     </th:block>
 </body>

@@ -2,7 +2,6 @@ package by.shumilin.example.controller;
 
 import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
-import by.shumilin.example.repository.NewsRepository;
 import by.shumilin.example.service.CommentsGetFromDataBase;
 import by.shumilin.example.service.NewsGetFromDataBase;
 import org.springframework.beans.factory.annotation.Autowired;

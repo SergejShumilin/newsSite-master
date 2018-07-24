@@ -20,6 +20,7 @@ public class CommentRepositoryImp implements CommentRepository {
 
     private static final String INSERT = "INSERT INTO comment(comments, data, news_id) VALUES(?, Now(), ?)";
     private static final String QUERY_TO_DB_COMMENT = "SELECT * FROM comment WHERE news_id = ?";
+    private static final String DROP = "DELETE From comment WHERE comment_id=?";
 
     @Override
     public void save(String commentContent, Long newsId) {
@@ -66,5 +67,24 @@ public class CommentRepositoryImp implements CommentRepository {
             }
         }
         return comments;
+    }
+
+    @Override
+    public void delete(Long commentId) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = dbWorker.getConnection().prepareStatement(DROP);
+            preparedStatement.setLong(1, commentId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                dbWorker.getConnection().close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
