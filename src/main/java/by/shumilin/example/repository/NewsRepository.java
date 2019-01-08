@@ -1,18 +1,12 @@
 package by.shumilin.example.repository;
 
-import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 
-public interface NewsRepository {
+
+public interface NewsRepository extends JpaRepository<News, Integer> {
+    News findById(long newsId);
+
     void save(String title, String content);
-
-    News getNews(long newsId);
-
-    List<News> getAllNews();
-
-
-
-
 }

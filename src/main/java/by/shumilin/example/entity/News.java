@@ -1,13 +1,23 @@
 package by.shumilin.example.entity;
 
+import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table
 public class News {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
     private String content;
     private String shortText;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Comment> comments;
 
     public News() {

@@ -3,8 +3,6 @@ package by.shumilin.example.controller;
 
 import by.shumilin.example.entity.News;
 import by.shumilin.example.repository.NewsRepository;
-import by.shumilin.example.service.NewsGetFromDataBase;
-import by.shumilin.example.service.NewsSaveToDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +15,8 @@ import java.util.List;
 @Controller
 public class PublicationForm {
     @Autowired
-    NewsSaveToDataBase newsSaveToDataBase;
+    NewsRepository newsRepository;
 
-    @Autowired
-    NewsGetFromDataBase newsGetFromDataBase;
 
     @GetMapping("/publish")
     public String getFormPublication() {
@@ -29,8 +25,8 @@ public class PublicationForm {
 
     @PostMapping("/publication")
     public String setPublication(@RequestParam String title, @RequestParam String content, Model model) {
-        newsSaveToDataBase.save(title, content);
-        List<News> allNews = newsGetFromDataBase.getAllNews();
+        newsRepository.save(title, content);
+        List<News> allNews = newsRepository.findAll();
         model.addAttribute("allNews", allNews);
         return "allnews";
     }

@@ -1,7 +1,7 @@
 package by.shumilin.example.controller;
 
-import by.shumilin.example.service.CommentDeleteFromDataBase;
-import by.shumilin.example.service.CommentSaveToDataBase;
+
+import by.shumilin.example.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CommentController {
 
     @Autowired
-    CommentSaveToDataBase commentSaveToDataBase;
+    CommentRepository commentSaveToDataBase;
 
     @Autowired
-    CommentDeleteFromDataBase commentDeleteFromDataBase;
+    CommentRepository commentDeleteFromDataBase;
 
     @PostMapping("/comment")
     public String setComment(@RequestParam String commentContent, @RequestParam Long newsId) {
@@ -25,7 +25,7 @@ public class CommentController {
 
     @PostMapping("/delete{commentId}")
     public String deleteComment(@PathVariable Long commentId){
-        commentDeleteFromDataBase.delete(commentId);
+        commentDeleteFromDataBase.deleteByCommentId(commentId);
         return "news";
     }
 }

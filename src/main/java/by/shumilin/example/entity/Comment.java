@@ -1,9 +1,16 @@
 package by.shumilin.example.entity;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table
 public class Comment {
-    private long commentId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long commentId;
     private String content;
 
     public long getCommentId() {
