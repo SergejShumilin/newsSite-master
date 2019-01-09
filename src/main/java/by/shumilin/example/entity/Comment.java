@@ -13,11 +13,22 @@ public class Comment {
     private Long commentId;
     private String content;
 
-    public long getCommentId() {
+    @ManyToOne
+    private News news;
+
+    public Comment() {
+    }
+
+    public Comment(String content, News news) {
+        this.content = content;
+        this.news = news;
+    }
+
+    public Long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(long commentId) {
+    public void setCommentId(Long commentId) {
         this.commentId = commentId;
     }
 
@@ -29,19 +40,27 @@ public class Comment {
         this.content = content;
     }
 
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return commentId == comment.commentId &&
-                Objects.equals(content, comment.content);
+        return Objects.equals(commentId, comment.commentId) &&
+                Objects.equals(content, comment.content) &&
+                Objects.equals(news, comment.news);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(commentId, content);
+        return Objects.hash(commentId, content, news);
     }
 
     @Override
@@ -49,6 +68,7 @@ public class Comment {
         return "Comment{" +
                 "commentId=" + commentId +
                 ", content='" + content + '\'' +
+                ", news=" + news +
                 '}';
     }
 }
