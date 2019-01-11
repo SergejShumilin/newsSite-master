@@ -2,7 +2,6 @@ package by.shumilin.example.controller;
 
 import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
-import by.shumilin.example.repository.CommentRepository;
 import by.shumilin.example.service.CommentService;
 import by.shumilin.example.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class NewsController {
     public String getAllNews(Model model) {
         List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
-        return "allnews";
+        return "main";
     }
 
     @GetMapping(value = "/news/{newsId}")
@@ -52,6 +51,6 @@ public class NewsController {
         newsService.save(news);
         List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
-        return "allnews";
+        return "main";
     }
 }

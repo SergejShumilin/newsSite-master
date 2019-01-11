@@ -5,6 +5,11 @@
     <title>Title</title>
 </head>
 <body>
+<div>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 <th:block th:each="news : ${allNews}">
     <tr>
         <td th:text="${news.id}" >...</td>
