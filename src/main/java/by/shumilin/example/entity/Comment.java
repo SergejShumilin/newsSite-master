@@ -1,7 +1,5 @@
 package by.shumilin.example.entity;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -17,6 +15,10 @@ public class Comment {
     private News news;
 
     public Comment() {
+    }
+
+    public Comment(String content) {
+        this.content = content;
     }
 
     public Comment(String content, News news) {

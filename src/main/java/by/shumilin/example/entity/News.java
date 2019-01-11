@@ -23,6 +23,16 @@ public class News {
     public News() {
     }
 
+    public News(long id) {
+        this.id = id;
+    }
+
+
+    public News(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public News(long newsId, String title, String content, String shortText, List<Comment> comments) {
         this.id = newsId;
         this.title = title;

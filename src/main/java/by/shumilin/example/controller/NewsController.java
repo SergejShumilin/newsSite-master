@@ -3,7 +3,8 @@ package by.shumilin.example.controller;
 import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
 import by.shumilin.example.repository.CommentRepository;
-import by.shumilin.example.repository.NewsRepository;
+import by.shumilin.example.service.CommentService;
+import by.shumilin.example.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,23 +14,28 @@ import java.util.List;
 
 @Controller
 public class NewsController {
-    @Autowired
-    NewsRepository newsRepository;
+
+    private final NewsService newsService;
+
+    private final CommentService commentService;
 
     @Autowired
-    CommentRepository commentRepository;
+    public NewsController(NewsService newsService, CommentService commentService) {
+        this.newsService = newsService;
+        this.commentService = commentService;
+    }
 
     @GetMapping(value = "/")
     public String getAllNews(Model model) {
-        List<News> allNews = newsRepository.findAll();
+        List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
         return "allnews";
     }
 
     @GetMapping(value = "/news/{newsId}")
     public String getNews(@PathVariable long newsId, Model model) {
-        News news = newsRepository.findById(newsId);
-        List<Comment> comments = commentRepository.findAllByNewsId(newsId);
+        News news = newsService.findById(newsId);
+        List<Comment> comments = commentService.findAllByNewsId(newsId);
         model.addAttribute("news", news);
         model.addAttribute("comments", comments);
         return "news";
@@ -41,9 +47,10 @@ public class NewsController {
     }
 
     @PostMapping("/publication")
-    public String setPublication(News news, Model model) {
-        newsRepository.save(news);
-        List<News> allNews = newsRepository.findAll();
+    public String setPublication(@RequestParam String title, @RequestParam String content, Model model) {
+        News news = new News(title, content);
+        newsService.save(news);
+        List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
         return "allnews";
     }
