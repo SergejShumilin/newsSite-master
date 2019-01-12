@@ -25,6 +25,10 @@ public class NewsController {
     }
 
     @GetMapping(value = "/")
+    public String greeting(){
+        return "greeting";
+    }
+    @GetMapping(value = "/main")
     public String getAllNews(Model model) {
         List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);

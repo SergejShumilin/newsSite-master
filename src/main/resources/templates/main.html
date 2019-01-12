@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -10,6 +15,7 @@
         <input type="submit" value="Sign Out"/>
     </form>
 </div>
+<div class="center">
 <th:block th:each="news : ${allNews}">
     <tr>
         <td th:text="${news.id}" >...</td>
@@ -23,5 +29,6 @@
 </th:block>
 <br>
 <a href="/publish">Предложить новость</a>
+</div>
 </body>
 </html>

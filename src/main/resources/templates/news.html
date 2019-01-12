@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<div class="center">
     <tr>
         <td th:text="${news.id}">...</td>
         <br>
@@ -24,8 +30,6 @@
 
     <th:block th:each="comment : ${comments}">
         <tr>
-            <td th:text="${comment.commentId}" >...</td>
-            <br>
             <td th:text="${comment.content}" >...</td>
             <br>
             <form action="#" th:action="@{/delete}" method="post">
@@ -34,5 +38,6 @@
             </form>
         </tr>
     </th:block>
+</div>
 </body>
 </html>
