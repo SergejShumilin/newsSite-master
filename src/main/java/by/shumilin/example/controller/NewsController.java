@@ -4,7 +4,6 @@ import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
 import by.shumilin.example.service.CommentService;
 import by.shumilin.example.service.NewsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,6 @@ public class NewsController {
 
     private final CommentService commentService;
 
-    @Autowired
     public NewsController(NewsService newsService, CommentService commentService) {
         this.newsService = newsService;
         this.commentService = commentService;

@@ -2,7 +2,6 @@ package by.shumilin.example.service;
 
 import by.shumilin.example.entity.Comment;
 import by.shumilin.example.repository.CommentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,11 +11,9 @@ public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;
 
-    @Autowired
     public CommentServiceImpl(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
-
 
     @Override
     public void save(Comment comment) {

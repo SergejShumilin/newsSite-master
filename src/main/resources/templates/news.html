@@ -31,9 +31,11 @@
     <th:block th:each="comment : ${comments}">
         <tr>
             <td th:text="${comment.content}" >...</td>
+            <td th:text="${comment.date}">...</td>
             <br>
             <form action="#" th:action="@{/delete}" method="post">
                 <input id="commentId" name="commentId" type="hidden" th:value="${comment.commentId}"/>
+                <input id="id" name="newsId" type="hidden" th:value="${news.id}"/>
                 <p><input type="submit" value="delete" /> </p>
             </form>
         </tr>
