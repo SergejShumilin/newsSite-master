@@ -1,13 +1,17 @@
-package by.shumilin.example.service;
+package by.shumilin.example.service.impl;
 
 import by.shumilin.example.entity.News;
 import by.shumilin.example.repository.NewsRepository;
-import org.springframework.stereotype.Component;
+import by.shumilin.example.service.NewsService;
+import org.springframework.stereotype.Service;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 
-@Component
+@Service
 public class NewsServiceImpl implements NewsService {
+
+    private static final Logger LOG = Logger.getLogger(NewsServiceImpl.class);
 
     private final NewsRepository newsRepository;
 
@@ -17,18 +21,19 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public List<News> findAll() {
-        List<News> all = newsRepository.findAll();
-        return all;
+        LOG.info("Поиск всех новостей");
+        return newsRepository.findAll();
     }
 
     @Override
     public News findById(long newsId) {
-        News newsbyId = newsRepository.findById(newsId);
-        return newsbyId;
+        LOG.info("Поиск новости с newsId = " + newsId);
+        return newsRepository.findById(newsId);
     }
 
     @Override
     public void save(News news) {
         newsRepository.save(news);
+        LOG.info("Сохранение новости");
     }
 }

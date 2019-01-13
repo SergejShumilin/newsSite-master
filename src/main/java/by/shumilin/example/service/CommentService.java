@@ -4,6 +4,7 @@ import by.shumilin.example.entity.Comment;
 
 import java.util.List;
 
+
 public interface CommentService {
     void save(Comment comment);
 

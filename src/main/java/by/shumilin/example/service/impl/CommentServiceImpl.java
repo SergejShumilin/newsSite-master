@@ -1,13 +1,17 @@
-package by.shumilin.example.service;
+package by.shumilin.example.service.impl;
 
 import by.shumilin.example.entity.Comment;
 import by.shumilin.example.repository.CommentRepository;
-import org.springframework.stereotype.Component;
+import by.shumilin.example.service.CommentService;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class CommentServiceImpl implements CommentService {
+
+    private static final Logger LOG = Logger.getLogger(CommentServiceImpl.class);
 
     private final CommentRepository commentRepository;
 
@@ -18,16 +22,18 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void save(Comment comment) {
         commentRepository.save(comment);
+        LOG.info("Сохранение комментария");
     }
 
     @Override
     public void deleteById(long commentId) {
         commentRepository.deleteById(commentId);
+        LOG.info("Удаление комментария с commentId = " + commentId);
     }
 
     @Override
     public List<Comment> findAllByNewsId(long newsId) {
-        List<Comment> allByNewsId = commentRepository.findAllByNewsId(newsId);
-        return allByNewsId;
+        LOG.info("Поиск всех комментариев для новости с newsId = " + newsId);
+        return commentRepository.findAllByNewsId(newsId);
     }
 }
