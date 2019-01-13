@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Publication news</title>
+    <style>
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="center">
+    <h1>Edit news</h1>
+    <form action="#" th:action="@{/update}" method="put">
+        <p>Title: <input type="text" name="title" th:content="${news.title}" required minlength="2" maxlength="500"></p>
+        <p>Content: <input type="text" name="content" th:content="${news.content}" required minlength="2" maxlength="500"></p>
+        <p><input type="submit" value="Update" /> </p>
+    </form>
+</div>
+</body>
+</html>

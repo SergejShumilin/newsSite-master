@@ -18,6 +18,11 @@
         <br>
         <td th:text="${news.content}">...</td>
         <br>
+
+        <form th:action="@{/edit}" method="get">
+            <input id="id" name="newsId" type="hidden" th:value="${news.id}"/>
+            <input type="submit" value="Edit"/>
+        </form>
     </tr>
 
 

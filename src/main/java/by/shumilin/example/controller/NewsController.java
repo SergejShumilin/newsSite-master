@@ -26,6 +26,7 @@ public class NewsController {
     public String greeting(){
         return "greeting";
     }
+
     @GetMapping(value = "/main")
     public String getAllNews(Model model) {
         List<News> allNews = newsService.findAll();
@@ -54,5 +55,12 @@ public class NewsController {
         List<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
         return "main";
+    }
+
+    @GetMapping("/edit/{newsId}")
+    public String editNews(@PathVariable long newsId, Model model){
+        News news = newsService.findById(newsId);
+        model.addAttribute("news", news);
+        return "edit";
     }
 }
