@@ -5,6 +5,7 @@ import by.shumilin.example.entity.News;
 import by.shumilin.example.service.CommentService;
 import by.shumilin.example.service.NewsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +36,10 @@ public class NewsController {
     }
 
     @GetMapping(value = "/news/{newsId}")
+    @Transactional
     public String getNews(@PathVariable long newsId, Model model) {
         News news = newsService.findById(newsId);
+//        List<Comment> comments = news.getComments();
         List<Comment> comments = commentService.findAllByNewsId(newsId);
         model.addAttribute("news", news);
         model.addAttribute("comments", comments);
@@ -49,6 +52,7 @@ public class NewsController {
     }
 
     @PostMapping("/publication")
+    @Transactional
     public String setPublication(@RequestParam String title, @RequestParam String content, Model model) {
         News news = new News(title, content);
         newsService.save(news);
@@ -65,6 +69,7 @@ public class NewsController {
     }
 
     @PostMapping("/update")
+    @Transactional
     public String updateNews(@RequestParam String title, @RequestParam String content, @RequestParam long newsId, Model model){
         News news = newsService.findById(newsId);
         news.setTitle(title);
