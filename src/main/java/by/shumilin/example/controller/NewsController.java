@@ -22,10 +22,10 @@ public class NewsController {
         this.commentService = commentService;
     }
 
-    @GetMapping(value = "/")
-    public String greeting(){
-        return "greeting";
-    }
+//    @GetMapping(value = "/")
+//    public String greeting(){
+//        return "greeting";
+//    }
 
     @GetMapping(value = "/main")
     public String getAllNews(Model model) {
@@ -62,5 +62,15 @@ public class NewsController {
         News news = newsService.findById(newsId);
         model.addAttribute("news", news);
         return "edit";
+    }
+
+    @PutMapping("/update")
+    public String updateNews(@RequestParam String title, @RequestParam String content, @RequestParam long newsId, Model model){
+        News news = new News(title, content);
+        newsService.save(news);
+        List<Comment> comments = commentService.findAllByNewsId(newsId);
+        model.addAttribute("news", news);
+        model.addAttribute("comments", comments);
+        return "redirect:/news/" + newsId;
     }
 }
