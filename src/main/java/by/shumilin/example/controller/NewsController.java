@@ -64,9 +64,11 @@ public class NewsController {
         return "edit";
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public String updateNews(@RequestParam String title, @RequestParam String content, @RequestParam long newsId, Model model){
-        News news = new News(title, content);
+        News news = newsService.findById(newsId);
+        news.setTitle(title);
+        news.setContent(content);
         newsService.save(news);
         List<Comment> comments = commentService.findAllByNewsId(newsId);
         model.addAttribute("news", news);
