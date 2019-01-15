@@ -31,12 +31,9 @@
     <a href="/publish">Предложить новость</a>
     <br>
     <form th:action="@{/next}" method="get">
-        <input id="id" name="number" type="hidden" th:value="${1}"/>
-        <input type="submit" value="1"/>
-        <input id="id" name="number" type="hidden" th:value="${2}"/>
-        <input type="submit" value="2"/>
-        <input id="id" name="number" type="hidden" th:value="${3}"/>
-        <input type="submit" value="3"/>
+        <button name="number" type="submit" value="0">1</button>
+        <button name="number" type="submit" value="1">2</button>
+        <button name="number" type="submit" value="2">3</button>
     </form>
 
 </div>

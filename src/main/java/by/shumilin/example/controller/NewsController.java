@@ -86,6 +86,6 @@ public class NewsController {
         Page<News> page = newsService.findAll(pageRequest);
         List<News> allNews = page.getContent();
         model.addAttribute("allNews", allNews);
-        return "redirect:/";
+        return "main";
     }
 }
