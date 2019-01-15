@@ -2,13 +2,16 @@ package by.shumilin.example.service;
 
 
 import by.shumilin.example.entity.News;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 public interface NewsService {
-    List<News> findAll();
+
+    Iterable<News> findAll();
 
     News findById(long newsId);
 
     void save(News news);
+
+    Page<News> findAll(PageRequest pageRequest);
 }

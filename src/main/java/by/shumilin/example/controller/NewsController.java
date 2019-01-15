@@ -4,6 +4,8 @@ import by.shumilin.example.entity.Comment;
 import by.shumilin.example.entity.News;
 import by.shumilin.example.service.CommentService;
 import by.shumilin.example.service.NewsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -23,14 +25,9 @@ public class NewsController {
         this.commentService = commentService;
     }
 
-//    @GetMapping(value = "/")
-//    public String greeting(){
-//        return "greeting";
-//    }
-
-    @GetMapping(value = "/main")
+    @GetMapping(value = "/")
     public String getAllNews(Model model) {
-        List<News> allNews = newsService.findAll();
+        Iterable<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
         return "main";
     }
@@ -56,7 +53,8 @@ public class NewsController {
     public String setPublication(@RequestParam String title, @RequestParam String content, Model model) {
         News news = new News(title, content);
         newsService.save(news);
-        List<News> allNews = newsService.findAll();
+
+        Iterable<News> allNews = newsService.findAll();
         model.addAttribute("allNews", allNews);
         return "main";
     }
@@ -79,5 +77,15 @@ public class NewsController {
         model.addAttribute("news", news);
         model.addAttribute("comments", comments);
         return "redirect:/news/" + newsId;
+    }
+
+    @GetMapping("/next")
+    @Transactional
+    public String nextPage(@RequestParam int number, Model model){
+        PageRequest pageRequest = PageRequest.of(number, 5);
+        Page<News> page = newsService.findAll(pageRequest);
+        List<News> allNews = page.getContent();
+        model.addAttribute("allNews", allNews);
+        return "redirect:/";
     }
 }

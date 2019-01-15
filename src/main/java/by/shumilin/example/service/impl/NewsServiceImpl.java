@@ -3,10 +3,10 @@ package by.shumilin.example.service.impl;
 import by.shumilin.example.entity.News;
 import by.shumilin.example.repository.NewsRepository;
 import by.shumilin.example.service.NewsService;
-import org.springframework.stereotype.Service;
 import org.apache.log4j.Logger;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
 @Service
 public class NewsServiceImpl implements NewsService {
@@ -20,7 +20,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> findAll() {
+    public Iterable<News> findAll() {
         LOG.info("Поиск всех новостей");
         return newsRepository.findAll();
     }
@@ -35,5 +35,10 @@ public class NewsServiceImpl implements NewsService {
     public void save(News news) {
         newsRepository.save(news);
         LOG.info("Сохранение новости");
+    }
+
+    @Override
+    public Page<News> findAll(PageRequest pageRequest) {
+       return newsRepository.findAll(pageRequest);
     }
 }

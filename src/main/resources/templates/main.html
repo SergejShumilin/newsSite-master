@@ -16,19 +16,25 @@
     </form>
 </div>
 <div class="center">
-<th:block th:each="news : ${allNews}">
-    <tr>
-        <td th:text="${news.id}" >...</td>
-        <br>
-        <td th:text="${news.title}" >...</td>
-        <br>
-        <td th:text="${news.shortText}">...</td>
-        <a th:href="@{|/news/${news.id}|}">Read more</a>
-        <br>
-    </tr>
-</th:block>
-<br>
-<a href="/publish">Предложить новость</a>
+    <th:block th:each="news : ${allNews}">
+        <tr>
+            <td th:text="${news.id}">...</td>
+            <br>
+            <td th:text="${news.title}">...</td>
+            <br>
+            <td th:text="${news.shortText}">...</td>
+            <a th:href="@{|/news/${news.id}|}">Read more</a>
+            <br>
+        </tr>
+    </th:block>
+    <br>
+    <a href="/publish">Предложить новость</a>
+    <br>
+    <form th:action="@{/next}" method="get">
+
+
+    </form>
+
 </div>
 </body>
 </html>
