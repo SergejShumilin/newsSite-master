@@ -85,7 +85,7 @@ public class NewsController {
 
     @GetMapping("/")
     @Transactional
-    public String nextPage(@RequestParam(defaultValue = "1") Integer number, Model model){
+    public String nextPage(@RequestParam(defaultValue = "0") Integer number, Model model){
         PageRequest pageRequest = PageRequest.of(number, 5);
         Page<News> page = newsService.findAll(pageRequest);
         List<News> allNews = page.getContent();
