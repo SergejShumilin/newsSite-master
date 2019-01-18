@@ -11,6 +11,7 @@ public class News {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
+    @Column(name="text", length=4000)
     private String content;
     private String shortText;
 

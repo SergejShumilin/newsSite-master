@@ -14,4 +14,6 @@ public interface NewsService {
     void save(News news);
 
     Page<News> findAll(PageRequest pageRequest);
+
+    long count();
 }

@@ -25,12 +25,12 @@ public class NewsController {
         this.commentService = commentService;
     }
 
-    @GetMapping(value = "/")
-    public String getAllNews(Model model) {
-        Iterable<News> allNews = newsService.findAll();
-        model.addAttribute("allNews", allNews);
-        return "main";
-    }
+//    @GetMapping(value = "/")
+//    public String getAllNews(Model model) {
+//        Iterable<News> allNews = newsService.findAll();
+//        model.addAttribute("allNews", allNews);
+//        return "main";
+//    }
 
     @GetMapping(value = "/news/{newsId}")
     @Transactional
@@ -51,7 +51,9 @@ public class NewsController {
     @PostMapping("/publication")
     @Transactional
     public String setPublication(@RequestParam String title, @RequestParam String content, Model model) {
+        String substring = content.substring(0, 200);
         News news = new News(title, content);
+        news.setShortText(substring);
         newsService.save(news);
 
         Iterable<News> allNews = newsService.findAll();
@@ -72,6 +74,8 @@ public class NewsController {
         News news = newsService.findById(newsId);
         news.setTitle(title);
         news.setContent(content);
+        String substring = content.substring(0, 200);
+        news.setShortText(substring);
         newsService.save(news);
         List<Comment> comments = commentService.findAllByNewsId(newsId);
         model.addAttribute("news", news);
@@ -79,12 +83,13 @@ public class NewsController {
         return "redirect:/news/" + newsId;
     }
 
-    @GetMapping("/next")
+    @GetMapping("/")
     @Transactional
-    public String nextPage(@RequestParam int number, Model model){
+    public String nextPage(@RequestParam(defaultValue = "1") Integer number, Model model){
         PageRequest pageRequest = PageRequest.of(number, 5);
         Page<News> page = newsService.findAll(pageRequest);
         List<News> allNews = page.getContent();
+        long count = newsService.count();
         model.addAttribute("allNews", allNews);
         return "main";
     }

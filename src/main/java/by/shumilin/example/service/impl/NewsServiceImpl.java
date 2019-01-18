@@ -41,4 +41,9 @@ public class NewsServiceImpl implements NewsService {
     public Page<News> findAll(PageRequest pageRequest) {
        return newsRepository.findAll(pageRequest);
     }
+
+    @Override
+    public long count() {
+        return newsRepository.count();
+    }
 }

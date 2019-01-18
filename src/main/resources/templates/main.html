@@ -7,6 +7,15 @@
         .center {
             text-align: center;
         }
+
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -16,21 +25,26 @@
     </form>
 </div>
 <div class="center">
+
     <th:block th:each="news : ${allNews}">
-        <tr>
-            <td th:text="${news.id}">...</td>
-            <br>
-            <td th:text="${news.title}">...</td>
-            <br>
+        <table style="width:100%">
+            <tr>
+                <!--<td th:text="${news.id}">...</td>-->
+                <!--<br>-->
+            <tr style="background-color:#f1f1c1">
+                <th th:text="${news.title}">...</th>
+                <br>
+            </tr>
             <td th:text="${news.shortText}">...</td>
-            <a th:href="@{|/news/${news.id}|}">Read more</a>
-            <br>
-        </tr>
+            </tr>
+        </table>
+        <a th:href="@{|/news/${news.id}|}">Read more</a>
     </th:block>
+
     <br>
     <a href="/publish">Предложить новость</a>
     <br>
-    <form th:action="@{/next}" method="get">
+    <form th:action="@{/}" method="get">
         <button name="number" type="submit" value="0">1</button>
         <button name="number" type="submit" value="1">2</button>
         <button name="number" type="submit" value="2">3</button>

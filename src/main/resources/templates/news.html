@@ -7,23 +7,37 @@
         .center {
             text-align: center;
         }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse
+        }
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div class="center">
-    <tr>
-        <td th:text="${news.id}">...</td>
+    <table style="width:100%">
+        <!--<tr>-->
+            <!--<th th:text="${news.id}">...</th>-->
+        <!--</tr>-->
         <br>
-        <td th:text="${news.title}">...</td>
+        <tr style="background-color:#f1f1c1">
+            <td th:text="${news.title}">...</td>
+        </tr>
         <br>
-        <td th:text="${news.content}">...</td>
+        <tr>
+            <td th:text="${news.content}">...</td>
+        </tr>
         <br>
+    </table>
 
         <form th:action="@{|/edit/${news.id}|}" method="get">
             <input id="id" name="newsId" type="hidden" th:value="${news.id}"/>
             <input type="submit" value="Edit"/>
         </form>
-    </tr>
+
 
 
 <h6>Leave a comment</h6>
